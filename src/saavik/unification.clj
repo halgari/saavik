@@ -30,7 +30,6 @@
 
 
 (defn unify [src src-env dest dest-env]
-  (println "U " src src-env "--> " dest dest-env)
   (assert (and (not (nil? src))
                (not (nil? dest))))
   (cond
@@ -61,3 +60,5 @@
                 (when-let [new-env (unify sarg src-env darg dest-env)]
                   (recur new-env (next src-seq) (next dest-seq))))
               dest-env))))
+
+

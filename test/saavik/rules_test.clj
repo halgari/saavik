@@ -39,32 +39,3 @@
               {X :abraham Y :isaac}}))))
 
 
-(defn repl []
-  (loop [db (make-db
-              '[(father :abraham :isaac)
-                (father :haran :lot)
-                (father :haran :milcah)
-                (father :haran :yiscah)
-                (male :isaac)
-                (male :lot)
-                (female :milcah)
-                (female :yiscah)
-
-                ((son X Y)
-                  (father X Y)
-                  (male Y))
-
-                ])]
-    (let [value (read *in*)
-          _ (assert (not= value :exit))]
-      (if (= value '?)
-        (let [value (read *in*)
-              results (solve db conj #{} value)]
-          (doseq [result results]
-            (doseq [[k v] result]
-              (print k "=" v "\t"))
-            (print "\n"))
-          (println "\ndone \n")
-          (recur db))
-
-        (let [])))))
